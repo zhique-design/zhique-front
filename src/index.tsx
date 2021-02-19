@@ -1,12 +1,20 @@
-import React from 'react';
-import { Button } from 'antd';
-import ReactDOM from 'react-dom';
+import dva, { Router } from 'dva';
+import createLoading from 'dva-loading';
+import ZhiQue from './ZhiQue';
 
-const Hello: React.FC = () => (
-  <Button type="primary">1234</Button>
-);
+// 初始化dvaApp
+const app = dva({
+  // eslint-disable-next-line global-require
+  history: require('history').createBrowserHistory(),
+});
 
-ReactDOM.render(
-  <Hello />,
-  document.getElementById('root')
-);
+// 将dvaApp示例保存到window对象中，以便在其他地方调用
+window.dvaApp = app;
+
+app.router(ZhiQue as Router);
+
+app.use(createLoading());
+
+// app.model(require('./models/global').default);
+
+app.start('#root');

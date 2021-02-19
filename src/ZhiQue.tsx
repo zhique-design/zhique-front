@@ -1,0 +1,58 @@
+import React from 'react';
+import { Redirect, Route, routerRedux, Switch } from 'dva/router';
+import dynamic from 'dva/dynamic';
+
+import { ConnectedRouterProps } from 'react-router-redux';
+
+import routers from '@/config/routers';
+
+const { ConnectedRouter } = routerRedux;
+
+const modelNotExisted = (app, model) =>
+  // eslint-disable-next-line no-underscore-dangle
+  !app._models.some(({ namespace }) => namespace === model.substring(model.lastIndexOf('/') + 1));
+
+export const dynamicWrapper = ({ models=[], component, ...dynamics } : { models?: Array<string>, component: any }) =>
+  dynamic({
+    // @ts-ignore
+    app: window.dvaApp,
+    models: () =>
+      models.filter(model => modelNotExisted(window.dvaApp, model)).map(m => import(`@/models/${m}`)),
+    component,
+    ...dynamics
+  }) as any;
+
+const RouteMap = routeList => routeList.map(({ path, component, redirect, children, ...dynamics }, index) => {
+    if (redirect) {
+      return <Redirect key={path} from={path} to={redirect} />;
+    }
+    if (children) {
+      const Component = dynamicWrapper({
+        component,
+        ...dynamics
+      });
+      return (
+        <Route
+          key={index}
+          path={path}
+          render={props => (<Component {...props}><Switch>{RouteMap(children)}</Switch></Component>)}
+        />
+      );
+    }
+    const Component = dynamicWrapper({
+      component,
+      ...dynamics
+    });
+    return <Route key={index} path={path} exact component={Component} />;
+  });
+
+const ZhiQue: React.FC<ConnectedRouterProps<{}>> = props => (
+  <ConnectedRouter {...props}>
+    <Switch>
+      {RouteMap(routers)}
+    </Switch>
+  </ConnectedRouter>
+);
+
+export default ZhiQue;
+
