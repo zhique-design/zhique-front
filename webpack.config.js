@@ -7,6 +7,7 @@ module.exports = {
     devServer: {
         port: 8000,
         compress: true,
+        historyApiFallback: true, // 访问任何路由时都返回index.html（单页应用）
     },
     resolve: {
         extensions: [".ts", ".tsx"],
