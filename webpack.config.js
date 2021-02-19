@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: "production",
@@ -31,6 +32,12 @@ module.exports = {
             }
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: "知雀",
+            template: path.resolve(__dirname, 'public', 'index.html')
+        }),
+    ],
     externals: {
         "react": "React",
         "react-dom": "ReactDOM"
