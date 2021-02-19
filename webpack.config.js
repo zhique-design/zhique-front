@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
+
 const production = process.env.NODE_ENV === 'production';
 
 module.exports = {
@@ -64,16 +67,16 @@ module.exports = {
                 ]
             },
             {
-                enforce: "pre",
+                enforce: 'pre',
                 test: /\.js(x?)$/,
                 exclude: /node_modules/,
-                loader: "source-map-loader"
+                loader: 'source-map-loader'
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "知雀",
+            title: '知雀',
             template: path.resolve(__dirname, 'public', 'index.html')
         }),
         new CleanWebpackPlugin({
@@ -82,6 +85,24 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'static/css/[name].[contenthash:8].css',
             chunkFilename: 'static/css/[name].chunk.[contenthash:8].css',
+        }),
+        new ESLintPlugin({
+            emitError: true,
+            emitWarning: true,
+            failOnError: true,
+            failOnWarning: true,
+            overrideConfigFile: path.join(__dirname, '.eslintrc.js'),
+            fix: true,
+        }),
+        new StylelintPlugin({
+            context: 'src',
+            configFile: path.resolve(__dirname, '.stylelintrc'),
+            files: '**/*.((c|le)ss)',
+            fix: true,
+            emitError: true,
+            emitWarning: true,
+            failOnError: true,
+            failOnWarning: true
         }),
     ],
 };
