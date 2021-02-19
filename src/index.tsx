@@ -15,6 +15,6 @@ app.router(ZhiQue as Router);
 
 app.use(createLoading());
 
-// app.model(require('./models/global').default);
+app.model(require('./models/global').default);
 
 app.start('#root');
