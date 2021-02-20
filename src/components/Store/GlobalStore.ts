@@ -21,12 +21,12 @@ export default class GlobalStore {
   }
 
   getFlatMenuKeys = (menus: Array<any>) => {
-    let keys: Array<string> = ['/'];
+    let keys: Array<any> = [];
     menus.forEach(item => {
       if (item.children) {
         keys = keys.concat(this.getFlatMenuKeys(item.children));
       }
-      keys.push(item.path);
+      keys.push({ path: item.path, tree: item.tree });
     });
     return keys;
   }
@@ -40,7 +40,7 @@ export default class GlobalStore {
   @computed
   get selectedMenuKeys() {
     if (this.isConsole) return [];
-    const selectedMenu = this.menuData.find(item => item.path === this.pathname);
+    const selectedMenu = this.flatMenuKeys.find(item => item.path === this.pathname);
     return selectedMenu?.tree || [];
   }
 

@@ -1,7 +1,7 @@
 import React, { PureComponent, Dispatch } from 'react';
 import { RouteComponentProps } from 'dva/router';
 import { connect } from 'dva';
-import ArticleContent from '@/components/ArticleContent';
+import ArticleDetail from '@/components/ArticleDetail';
 
 interface ArticleDetailProps extends RouteComponentProps<{ articleId: string | undefined}> {
   dispatch: Dispatch<any>;
@@ -13,7 +13,7 @@ interface ArticleDetailProps extends RouteComponentProps<{ articleId: string | u
   articleDetail: article.articleDetail,
   loading: loading.effects['article/fetchArticleById'],
 }))
-export default class ArticleDetail extends PureComponent<ArticleDetailProps> {
+export default class Detail extends PureComponent<ArticleDetailProps> {
 
   componentDidMount() {
     const {
@@ -47,7 +47,7 @@ export default class ArticleDetail extends PureComponent<ArticleDetailProps> {
   render() {
     const { articleDetail, loading } = this.props;
     return (
-      <ArticleContent articleDetail={articleDetail} loading={loading} />
+      <ArticleDetail articleDetail={articleDetail} loading={loading} />
     );
   }
 

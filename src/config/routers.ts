@@ -14,12 +14,20 @@ const config: Array<RouterConfig> = [
     children: [
       {
         path: '/',
-        component: () => import('@/pages/Blog'),
+        component: () => import('@/layouts/BlogLayout'),
         models: ['blog/article'],
         children: [
           {
+            path: '/',
+            component: () => import('@/pages/Blog/List'),
+          },
+          {
+            path: '/blog/category/:categoryId',
+            component: () => import('@/pages/Blog/List'),
+          },
+          {
             path: '/blog/article/detail/:articleId',
-            component: () => import('@/pages/Blog/ArticleDetail'),
+            component: () => import('@/pages/Blog/Detail'),
           }
         ]
       },

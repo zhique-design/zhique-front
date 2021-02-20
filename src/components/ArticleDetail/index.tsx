@@ -27,7 +27,7 @@ const ArticleContent: React.FC<ArticleContentProps>= ({
                                                       }) =>
   (
     <Card bordered={false} loading={loading}>
-      <div className={styles.articleContent}>
+      <div className={styles.articleDetail}>
         <div className={styles.articleHeader}>
           <Breadcrumb>
             <Breadcrumb.Item>

@@ -45,7 +45,7 @@ const RouteMap = routeList => routeList.map(({ path, component, name, redirect, 
       component,
       ...dynamics
     });
-    return <Route key={path || name} path={path} component={Component} />;
+    return <Route key={path || name} path={path} exact component={Component} />;
   });
 
 const ZhiQue: React.FC<ConnectedRouterProps<{}>> = props => (
