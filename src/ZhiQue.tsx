@@ -24,7 +24,7 @@ export const dynamicWrapper = ({ models=[], component, ...dynamics } : { models?
     ...dynamics
   }) as any;
 
-const RouteMap = routeList => routeList.map(({ path, component, redirect, children, ...dynamics }, index) => {
+const RouteMap = routeList => routeList.map(({ path, component, redirect, children, ...dynamics }) => {
     if (redirect) {
       return <Redirect key={path} from={path} to={redirect} />;
     }
@@ -35,7 +35,7 @@ const RouteMap = routeList => routeList.map(({ path, component, redirect, childr
       });
       return (
         <Route
-          key={index}
+          key={path}
           path={path}
           render={props => (<Component {...props}><Switch>{RouteMap(children)}</Switch></Component>)}
         />
@@ -45,7 +45,7 @@ const RouteMap = routeList => routeList.map(({ path, component, redirect, childr
       component,
       ...dynamics
     });
-    return <Route key={index} path={path} exact component={Component} />;
+    return <Route key={path} path={path} exact component={Component} />;
   });
 
 const ZhiQue: React.FC<ConnectedRouterProps<{}>> = props => (

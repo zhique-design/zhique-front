@@ -4,7 +4,6 @@ import { Card, Tooltip } from 'antd';
 import { Link } from 'dva/router';
 
 import Icon from '@/components/Icon';
-import QueueAnim from 'rc-queue-anim';
 import styles from './index.module.less';
 
 interface SiderViewProps {
@@ -30,13 +29,7 @@ const SiderView: React.FC<SiderViewProps> = ({ hotArticleList, recommendArticleL
           className={styles.siderCard}
           bordered={false}
         >
-          <QueueAnim
-            component="ul"
-            type="right"
-            componentProps={{
-              className: styles.articleList
-            }}
-          >
+          <ul className={styles.articleList}>
             {hotArticleList.map(({ url, id, views, title }, index) => (
               <li key={id}>
                 <Link
@@ -57,7 +50,7 @@ const SiderView: React.FC<SiderViewProps> = ({ hotArticleList, recommendArticleL
                 </Link>
               </li>
             ))}
-          </QueueAnim>
+          </ul>
         </Card>
       )}
       {recommendArticleList?.length > 0 && (
@@ -66,13 +59,7 @@ const SiderView: React.FC<SiderViewProps> = ({ hotArticleList, recommendArticleL
           className={styles.siderCard}
           bordered={false}
         >
-          <QueueAnim
-            component="ul"
-            type="right"
-            componentProps={{
-              className: styles.articleList
-            }}
-          >
+          <ul className={styles.articleList}>
             {recommendArticleList.map(({ url, id, views, title }, index) => (
               <li key={id}>
                 <Link
@@ -93,7 +80,7 @@ const SiderView: React.FC<SiderViewProps> = ({ hotArticleList, recommendArticleL
                 </Link>
               </li>
             ))}
-          </QueueAnim>
+          </ul>
         </Card>
       )}
     </>

@@ -41,7 +41,7 @@ export default class GlobalStore {
   get selectedMenuKeys() {
     if (this.isConsole) return [];
     const selectedMenu = this.menuData.find(item => item.path === this.pathname);
-    return selectedMenu?.tree || ['/'];
+    return selectedMenu?.tree || [];
   }
 
   @computed
@@ -73,7 +73,9 @@ export default class GlobalStore {
 
   @action
   setMobile = (isMobile: boolean) => {
-    this.isMobile = isMobile;
+    if (isMobile !== this.isMobile) {
+      this.isMobile = isMobile;
+    }
   }
 
   @action

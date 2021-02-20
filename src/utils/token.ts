@@ -5,7 +5,7 @@ export const ACCESS_TOKEN = 'access_token';
 const cookies = new Cookies();
 
 export function getAccessToken() {
-  const privateRouter = window.location.pathname.startsWith('/private');
+  const privateRouter = window.location.pathname.startsWith('/console');
   const privateToken = parse(window.location.search) || {};
   return privateRouter
     ? privateToken.access_token
