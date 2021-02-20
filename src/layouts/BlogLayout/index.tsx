@@ -3,7 +3,7 @@ import { Col, Row } from 'antd';
 import styles from './index.module.less';
 import Sider from './Sider';
 
-export default class Blog extends Component {
+export default class BlogLayout extends Component {
 
   render() {
     const { children } = this.props;
