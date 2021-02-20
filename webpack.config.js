@@ -73,7 +73,7 @@ module.exports = {
               modules: {
                 auto: true,
                 localIdentName: '[name]-[local]-[contenthash:8]',
-              }
+              },
             }
           },
           {
@@ -99,7 +99,7 @@ module.exports = {
                 javascriptEnabled: true,
               }
             }
-          },
+          }
         ]
       },
       {
@@ -133,6 +133,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:8].css',
       chunkFilename: 'static/css/[name].chunk.[contenthash:8].css',
+      ignoreOrder: true
     }),
     new ESLintPlugin({
       emitError: true,

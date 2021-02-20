@@ -9,11 +9,12 @@ const SiderMenuWrapper: React.FC = () => {
   const {
     globalStore: {
       isMenuCollapsed,
-      setMenuCollapsed
+      setMenuCollapsed,
+      isMobile,
     }
   } = useContext(GlobalContext);
 
-  return (
+  return isMobile ? (
     <Drawer
       visible={!isMenuCollapsed}
       placement="left"
@@ -23,8 +24,10 @@ const SiderMenuWrapper: React.FC = () => {
         height: '100vh',
       }}
     >
-      <SiderMenu />
+      <SiderMenu collapsed={isMobile ? false : isMenuCollapsed} />
     </Drawer>
+  ) : (
+    <SiderMenu collapsed={isMenuCollapsed} />
   );
 };
 

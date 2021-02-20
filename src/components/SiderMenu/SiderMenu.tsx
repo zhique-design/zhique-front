@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Layout } from 'antd';
 import classNames from 'classnames';
+import { observer } from 'mobx-react';
+import { SiderProps } from 'antd/lib/layout/Sider';
 import GlobalContext from '../Context/GlobalContext';
 import BaseMenu from './BaseMenu';
 
@@ -8,7 +10,7 @@ import styles from './index.module.less';
 
 const { Sider } = Layout;
 
-const SiderMenu: React.FC = () => {
+const SiderMenu: React.FC<SiderProps> = props => {
 
   const {
     globalStore: {
@@ -24,10 +26,10 @@ const SiderMenu: React.FC = () => {
     <Sider
       trigger={null}
       collapsible
-      collapsed={isMenuCollapsed}
       breakpoint="lg"
       width={256}
       className={classNames(styles.sider, menuTheme === 'light' ? styles.light : '')}
+      {...props}
     >
       <BaseMenu
         key="Menu"
@@ -45,4 +47,4 @@ const SiderMenu: React.FC = () => {
 };
 
 
-export default SiderMenu;
+export default observer(SiderMenu);

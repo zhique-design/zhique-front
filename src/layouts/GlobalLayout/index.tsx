@@ -8,6 +8,7 @@ import { enquireScreen, unenquireScreen } from 'enquire-js';
 import GlobalContext from '@/components/Context/GlobalContext';
 import GlobalStore from '@/components/Store/GlobalStore';
 import SiderMenu from '@/components/SiderMenu';
+import { observer } from 'mobx-react';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -46,6 +47,7 @@ interface GlobalLayoutProps {
 @connect(({ global }) => ({
   menuData: global.menuData,
 }))
+@observer
 export default class GlobalLayout extends Component<GlobalLayoutProps> {
 
   globalStore: GlobalStore;
@@ -88,14 +90,14 @@ export default class GlobalLayout extends Component<GlobalLayoutProps> {
   render() {
 
     const { children } = this.props;
-    const { documentTitle, isMobile } = this.globalStore;
+    const { documentTitle, isMobile, isConsole } = this.globalStore;
     return (
       <DocumentTitle title={documentTitle}>
         <ContainerQuery query={query}>
           {params => (
             <GlobalContext.Provider value={{ globalStore: this.globalStore }}>
               <Layout>
-                {isMobile && <SiderMenu />}
+                {!isConsole && !isMobile ? null : <SiderMenu />}
                 <Layout style={{ minHeight: '100vh' }} className={classNames(params)}>
                   <Header />
                   <Content style={{ margin: 24 }}>{children}</Content>

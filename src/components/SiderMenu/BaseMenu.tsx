@@ -79,13 +79,17 @@ export default class BaseMenu extends Component<MenuProps> {
     // if (!selectedKeys.length && openKeys) {
     //   selectedKeys = [openKeys[openKeys.length - 1]];
     // }
+    let props = {};
+    if (openKeys) {
+      props= { openKeys };
+    }
     return (
       <Menu
         key="Menu"
         selectedKeys={selectedMenuKeys}
         theme={menuTheme}
         mode={menuMode}
-        openKeys={openKeys}
+        {...props}
         {...rest}
       >
         {this.getNavMenuItems(menuData)}

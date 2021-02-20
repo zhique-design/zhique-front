@@ -1,5 +1,6 @@
 export interface RouterConfig {
   path?: string;
+  name?: string;
   redirect?: string;
   component?: any;
   models?: string[];
@@ -23,6 +24,7 @@ const config: Array<RouterConfig> = [
         ]
       },
       {
+        name: '404',
         component: () => import('@/pages/404')
       }
     ]
