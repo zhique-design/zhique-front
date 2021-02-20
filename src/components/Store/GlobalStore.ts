@@ -6,7 +6,7 @@ export default class GlobalStore {
 
   @observable props: any;
 
-  @observable isMenuCollapsed: boolean = false;
+  @observable isMenuCollapsed: boolean = true;
 
   @observable isMobile: boolean = false;
 
@@ -20,10 +20,33 @@ export default class GlobalStore {
     this.setProps(props);
   }
 
+  getFlatMenuKeys = (menus: Array<any>) => {
+    let keys: Array<string> = ['/'];
+    menus.forEach(item => {
+      if (item.children) {
+        keys = keys.concat(this.getFlatMenuKeys(item.children));
+      }
+      keys.push(item.path);
+    });
+    return keys;
+  }
+
   @computed
   get menuData() {
     const { menuData } = this.props;
     return [{ path: '/', name: '首页' }, ...menuData];
+  }
+
+  @computed
+  get selectedMenuKeys() {
+    if (this.isConsole) return [];
+    const selectedMenu = this.menuData.find(item => item.path === this.pathname);
+    return selectedMenu?.tree || ['/'];
+  }
+
+  @computed
+  get flatMenuKeys() {
+    return this.getFlatMenuKeys(this.menuData);
   }
 
   @computed

@@ -1,35 +1,11 @@
 import React, { Component } from 'react';
 import { Menu, MenuProps } from 'antd';
 import { Link } from 'dva/router';
-import { getMenuMatches, urlToList } from '@/utils/menu';
 import GlobalContext from '../Context/GlobalContext';
 
 export default class BaseMenu extends Component<MenuProps> {
 
   static contextType = GlobalContext;
-
-  flatMenuKeys: Array<string>;
-
-  constructor(props, context) {
-    super(props, context);
-    this.flatMenuKeys = this.getFlatMenuKeys(context.globalStore.menuData);
-  }
-
-  getFlatMenuKeys = (menus: Array<any>) => {
-    let keys: Array<string> = [];
-    menus.forEach(item => {
-      if (item.children) {
-        keys = keys.concat(this.getFlatMenuKeys(item.children));
-      }
-      keys.push(item.path);
-    });
-    return keys;
-  }
-
-  getSelectedMenuKeys = () => {
-    const { globalStore } = this.context;
-    return urlToList(globalStore.pathname).map(itemPath => getMenuMatches(this.flatMenuKeys, itemPath).pop());
-  };
 
   /**
    * 获得菜单的子节点
@@ -95,19 +71,21 @@ export default class BaseMenu extends Component<MenuProps> {
       globalStore: {
         menuData,
         menuTheme,
-        menuMode
+        menuMode,
+        selectedMenuKeys
       }
     } = this.context;
-    let selectedKeys: Array<any> = this.getSelectedMenuKeys();
-    if (!selectedKeys.length && openKeys) {
-      selectedKeys = [openKeys[openKeys.length - 1]];
-    }
+    // let selectedKeys: Array<any> = this.getSelectedMenuKeys();
+    // if (!selectedKeys.length && openKeys) {
+    //   selectedKeys = [openKeys[openKeys.length - 1]];
+    // }
     return (
       <Menu
         key="Menu"
-        selectedKeys={selectedKeys}
+        selectedKeys={selectedMenuKeys}
         theme={menuTheme}
         mode={menuMode}
+        openKeys={openKeys}
         {...rest}
       >
         {this.getNavMenuItems(menuData)}

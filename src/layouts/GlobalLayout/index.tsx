@@ -4,9 +4,11 @@ import { ContainerQuery } from 'react-container-query';
 import DocumentTitle from 'react-document-title';
 import classNames from 'classnames';
 import { connect } from 'dva';
+import { enquireScreen, unenquireScreen } from 'enquire-js';
 import GlobalContext from '@/components/Context/GlobalContext';
 import GlobalStore from '@/components/Store/GlobalStore';
 import Header from '@/layouts/GlobalLayout/Header';
+import SiderMenu from '@/components/SiderMenu';
 
 const { Content } = Layout;
 
@@ -47,6 +49,8 @@ export default class GlobalLayout extends Component<GlobalLayoutProps> {
 
   globalStore: GlobalStore;
 
+  enquireHandler: any;
+
   constructor(props) {
     super(props);
     this.globalStore = new GlobalStore({
@@ -60,6 +64,12 @@ export default class GlobalLayout extends Component<GlobalLayoutProps> {
     dispatch({
       type: 'global/initBlog',
     });
+    this.enquireHandler = enquireScreen(mobile => {
+      const { isMobile, setMobile } = this.globalStore;
+      if (isMobile !== mobile) {
+        setMobile(mobile);
+      }
+    });
   }
 
 
@@ -70,16 +80,21 @@ export default class GlobalLayout extends Component<GlobalLayoutProps> {
     });
   }
 
+  componentWillUnmount() {
+    unenquireScreen(this.enquireHandler);
+  }
+
   render() {
 
     const { children } = this.props;
-    const { documentTitle } = this.globalStore;
+    const { documentTitle, isMobile } = this.globalStore;
     return (
       <DocumentTitle title={documentTitle}>
         <ContainerQuery query={query}>
           {params => (
             <GlobalContext.Provider value={{ globalStore: this.globalStore }}>
               <Layout>
+                {isMobile && <SiderMenu />}
                 <Layout style={{ minHeight: '100vh' }} className={classNames(params)}>
                   <Header />
                   <Content style={{ margin: 24 }}>{children}</Content>

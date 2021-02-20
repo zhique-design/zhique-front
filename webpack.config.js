@@ -103,6 +103,17 @@ module.exports = {
         ]
       },
       {
+        test: /\.(png|jpg|gif|eot|woff|ttf|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+            },
+          },
+        ],
+      },
+      {
         enforce: 'pre',
         test: /\.js(x?)$/,
         exclude: /node_modules/,
