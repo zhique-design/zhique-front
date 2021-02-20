@@ -1,4 +1,4 @@
-import React, { PureComponent, Dispatch } from 'react';
+import React, { Component, Dispatch } from 'react';
 import { RouteComponentProps } from 'dva/router';
 import { connect } from 'dva';
 import ArticleDetail from '@/components/ArticleDetail';
@@ -14,7 +14,7 @@ interface ArticleDetailProps extends RouteComponentProps<{ articleId: string | u
   articleDetail: article.articleDetail,
   loading: loading.effects['article/fetchArticleById'],
 }))
-export default class Detail extends PureComponent<ArticleDetailProps> {
+export default class Detail extends Component<ArticleDetailProps> {
 
   componentDidMount() {
     const {
