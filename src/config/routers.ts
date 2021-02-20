@@ -1,5 +1,5 @@
 export interface RouterConfig {
-  path: string;
+  path?: string;
   redirect?: string;
   component?: any;
   models?: string[];
@@ -10,6 +10,15 @@ const config: Array<RouterConfig> = [
   {
     path: '/',
     component: () => import('@/layouts/GlobalLayout'),
+    children: [
+      {
+        path: '/',
+        component: () => import('@/pages/Blog')
+      },
+      {
+        component: () => import('@/pages/404')
+      }
+    ]
   }
 ];
 

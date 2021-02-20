@@ -58,6 +58,7 @@ module.exports = {
     'import/extensions': [2, 'ignorePackages', {
       'ts': 'never',
       'tsx': 'never',
+      'js': 'never',
     }],
     'import/no-extraneous-dependencies': [0],
     'camelcase': [0],

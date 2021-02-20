@@ -7,8 +7,9 @@ import { connect } from 'dva';
 import { enquireScreen, unenquireScreen } from 'enquire-js';
 import GlobalContext from '@/components/Context/GlobalContext';
 import GlobalStore from '@/components/Store/GlobalStore';
-import Header from '@/layouts/GlobalLayout/Header';
 import SiderMenu from '@/components/SiderMenu';
+import Header from './Header';
+import Footer from './Footer';
 
 const { Content } = Layout;
 
@@ -98,6 +99,7 @@ export default class GlobalLayout extends Component<GlobalLayoutProps> {
                 <Layout style={{ minHeight: '100vh' }} className={classNames(params)}>
                   <Header />
                   <Content style={{ margin: 24 }}>{children}</Content>
+                  <Footer />
                 </Layout>
               </Layout>
             </GlobalContext.Provider>
