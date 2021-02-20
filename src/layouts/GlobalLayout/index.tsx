@@ -90,14 +90,14 @@ export default class GlobalLayout extends Component<GlobalLayoutProps> {
   render() {
 
     const { children } = this.props;
-    const { documentTitle, isMobile, isConsole } = this.globalStore;
+    const { documentTitle, isMobile } = this.globalStore;
     return (
       <DocumentTitle title={documentTitle}>
         <ContainerQuery query={query}>
           {params => (
             <GlobalContext.Provider value={{ globalStore: this.globalStore }}>
               <Layout>
-                {!isConsole && !isMobile ? null : <SiderMenu />}
+                {isMobile && <SiderMenu />}
                 <Layout style={{ minHeight: '100vh' }} className={classNames(params)}>
                   <Header />
                   <Content style={{ margin: 24 }}>{children}</Content>

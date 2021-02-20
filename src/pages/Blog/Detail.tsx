@@ -2,6 +2,7 @@ import React, { PureComponent, Dispatch } from 'react';
 import { RouteComponentProps } from 'dva/router';
 import { connect } from 'dva';
 import ArticleDetail from '@/components/ArticleDetail';
+import { Card } from 'antd';
 
 interface ArticleDetailProps extends RouteComponentProps<{ articleId: string | undefined}> {
   dispatch: Dispatch<any>;
@@ -47,7 +48,9 @@ export default class Detail extends PureComponent<ArticleDetailProps> {
   render() {
     const { articleDetail, loading } = this.props;
     return (
-      <ArticleDetail articleDetail={articleDetail} loading={loading} />
+      <Card bordered={false} loading={loading}>
+        <ArticleDetail articleDetail={articleDetail} />
+      </Card>
     );
   }
 
