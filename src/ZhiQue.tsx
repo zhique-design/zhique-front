@@ -6,6 +6,8 @@ import { ConnectedRouterProps } from 'react-router-redux';
 
 import routers from '@/config/routers';
 
+import './global.less';
+
 const { ConnectedRouter } = routerRedux;
 
 const modelNotExisted = (app, model) =>

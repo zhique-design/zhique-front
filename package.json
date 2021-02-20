@@ -61,13 +61,20 @@
     "dva": "^2.4.1",
     "dva-loading": "^3.0.22",
     "enquire-js": "^0.2.1",
+    "github-markdown-css": "^4.0.0",
     "lodash-decorators": "^6.0.1",
     "mobx": "^5.0.0",
     "mobx-react": "^6.0.0",
+    "moment": "^2.29.1",
+    "rc-queue-anim": "^1.8.5",
     "react": "^17.0.1",
     "react-container-query": "^0.11.3",
     "react-document-title": "^2.0.3",
     "react-dom": "^17.0.1",
+    "react-markdown": "^5.0.3",
+    "react-syntax-highlighter": "^15.4.3",
+    "react-zmage": "^0.8.5-beta.36",
+    "remark-gfm": "^1.0.0",
     "universal-cookie": "^4.0.4"
   }
 }

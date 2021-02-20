@@ -13,7 +13,14 @@ const config: Array<RouterConfig> = [
     children: [
       {
         path: '/',
-        component: () => import('@/pages/Blog')
+        component: () => import('@/pages/Blog'),
+        models: ['blog/article'],
+        children: [
+          {
+            path: '/blog/article/detail/:articleId',
+            component: () => import('@/pages/Blog/ArticleDetail'),
+          }
+        ]
       },
       {
         component: () => import('@/pages/404')
