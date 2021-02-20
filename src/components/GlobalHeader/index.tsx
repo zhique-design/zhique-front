@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import GlobalContext from '@/components/Context/GlobalContext';
 import Debounce from 'lodash-decorators/debounce';
 import classNames from 'classnames';
+import { Link } from 'dva/router';
+import { observer } from 'mobx-react';
 import styles from './index.module.less';
 import Icon from '../Icon';
 
+@observer
 export default class GlobalHeader extends Component {
 
   static contextType = GlobalContext;
@@ -29,9 +32,14 @@ export default class GlobalHeader extends Component {
   };
 
   render() {
-    const { globalStore: { isMenuCollapsed } } = this.context;
+    const { globalStore: { isMenuCollapsed, isMobile } } = this.context;
     return (
       <div className={classNames(styles.header)}>
+        {isMobile && (
+          <Link to="/" className={styles.logo} key="logo">
+            <h1>断线的风筝</h1>
+          </Link>
+        )}
         <Icon type={isMenuCollapsed ? 'indent' : 'outdent'} className={styles.trigger} onClick={this.toggle}  />
       </div>
     );

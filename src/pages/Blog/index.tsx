@@ -9,7 +9,7 @@ export default class Blog extends Component {
     const { children } = this.props;
     return (
       <div className={styles.content}>
-        <Row gutter={24}>
+        <Row gutter={[24, 24]}>
           <Col xl={{ span: 8, push: 16 }} lg={24} md={24} sm={24} xs={24}>
             <Sider />
           </Col>

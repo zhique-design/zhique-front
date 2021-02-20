@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import classNames from 'classnames';
 import { observer } from 'mobx-react';
 import { SiderProps } from 'antd/lib/layout/Sider';
+import { Link } from 'dva/router';
 import GlobalContext from '../Context/GlobalContext';
 import BaseMenu from './BaseMenu';
 
@@ -31,6 +32,11 @@ const SiderMenu: React.FC<SiderProps> = props => {
       className={classNames(styles.sider, menuTheme === 'light' ? styles.light : '')}
       {...props}
     >
+      <div className={styles.logo}>
+        <Link to="/">
+          <h1>断线的风筝</h1>
+        </Link>
+      </div>
       <BaseMenu
         key="Menu"
         mode="inline"

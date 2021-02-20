@@ -31,6 +31,9 @@ const Markdown: React.FC<MarkdownProps> = ({ value, ...rest }) => (
         </SyntaxHighlighter>
       ),
       image: Image,
+      heading: ({ level, children }) => (
+        <span style={{ fontSize: 10 }}>{React.createElement(`h${level}`, {}, children)}</span>
+        )
     }}
     {...rest}
   >
