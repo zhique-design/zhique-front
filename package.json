@@ -64,8 +64,8 @@
     "enquire-js": "^0.2.1",
     "github-markdown-css": "^4.0.0",
     "lodash-decorators": "^6.0.1",
-    "mobx": "^5.0.0",
-    "mobx-react": "^6.0.0",
+    "mobx": "^6.1.7",
+    "mobx-react": "^7.1.0",
     "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-container-query": "^0.11.3",
@@ -75,6 +75,7 @@
     "react-syntax-highlighter": "^15.4.3",
     "react-zmage": "^0.8.5-beta.36",
     "remark-gfm": "^1.0.0",
-    "universal-cookie": "^4.0.4"
+    "universal-cookie": "^4.0.4",
+    "uuid": "^8.3.2"
   }
 }

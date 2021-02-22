@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Route, routerRedux, Switch } from 'dva/router';
+import { v4 as uuid4 } from 'uuid';
 import dynamic from 'dva/dynamic';
 
 import { ConnectedRouterProps } from 'react-router-redux';
@@ -24,9 +25,9 @@ export const dynamicWrapper = ({ models=[], component, ...dynamics } : { models?
     ...dynamics
   }) as any;
 
-const RouteMap = routeList => routeList.map(({ path, component, name, redirect, children, ...dynamics }) => {
+const RouteMap = routeList => routeList.map(({ path, component, redirect, children, ...dynamics }) => {
     if (redirect) {
-      return <Redirect key={path || name} from={path} to={redirect} />;
+      return <Redirect key={uuid4()} from={path} to={redirect} />;
     }
     if (children) {
       const Component = dynamicWrapper({
@@ -35,7 +36,7 @@ const RouteMap = routeList => routeList.map(({ path, component, name, redirect, 
       });
       return (
         <Route
-          key={path || name}
+          key={uuid4()}
           path={path}
           render={props => (<Component {...props}><Switch>{RouteMap(children)}</Switch></Component>)}
         />
@@ -45,7 +46,7 @@ const RouteMap = routeList => routeList.map(({ path, component, name, redirect, 
       component,
       ...dynamics
     });
-    return <Route key={path || name} path={path} exact component={Component} />;
+    return <Route key={uuid4()} path={path} exact component={Component} />;
   });
 
 const ZhiQue: React.FC<ConnectedRouterProps<{}>> = props => (
