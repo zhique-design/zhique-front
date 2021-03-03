@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 import { Link } from 'dva/router';
 
+import { observer } from 'mobx-react';
 import GlobalContext from '../Context/GlobalContext';
 import styles from './index.module.less';
 import BaseMenu from '../SiderMenu/BaseMenu';
 
+@observer
 export default class TopNavHeader extends Component {
 
   static contextType = GlobalContext;
 
   render() {
 
-    const { globalStore } = this.context;
+    const { globalStore: { menuTheme } } = this.context;
 
     return (
-      <div className={classNames(styles.head, globalStore.theme === 'light' ? styles.light : '')}>
+      <div className={classNames(styles.head, menuTheme === 'light' ? styles.light : '')}>
         <div className={classNames(styles.main, styles.wide)}>
           <div className={styles.left}>
             <div className={styles.logo} key="logo" id="logo">
