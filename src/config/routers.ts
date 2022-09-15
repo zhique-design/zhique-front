@@ -15,20 +15,20 @@ const config: Array<RouterConfig> = [
         path: "/",
         component: () => import("@/layouts/BlogLayout"),
         models: ["blog/article"],
-        // children: [
-        //   {
-        //     path: "/",
-        //     component: () => import("@/pages/Blog/List"),
-        //   },
-        //   {
-        //     path: "/blog/category/:categoryId",
-        //     component: () => import("@/pages/Blog/List"),
-        //   },
-        //   {
-        //     path: "/blog/article/detail/:articleId",
-        //     component: () => import("@/pages/Blog/Detail"),
-        //   },
-        // ],
+        children: [
+          {
+            path: "/",
+            component: () => import("@/pages/Blog/List"),
+          },
+          {
+            path: "/blog/category/:categoryId",
+            component: () => import("@/pages/Blog/List"),
+          },
+          {
+            path: "/blog/article/detail/:articleId",
+            component: () => import("@/pages/Blog/Detail"),
+          },
+        ],
       },
       {
         component: () => import("@/pages/404"),
