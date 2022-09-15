@@ -1,0 +1,109 @@
+@import '~antd/lib/style/themes/default.less';
+
+.content {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  transition: width 0.3s;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .siderCard {
+    :global {
+      .ant-card-head {
+        padding-left: 0;
+        border-bottom-style: dashed;
+      }
+
+      .ant-card-head-title > strong {
+        border-left: 4px solid #4a1dff;
+        padding-left: 10px;
+      }
+
+      .ant-tag {
+        margin-bottom: 8px;
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+
+    .articleList {
+      list-style: none;
+      padding: 0;
+      font-size: 14px;
+
+      & > li > a {
+        display: block;
+        padding: 5px;
+        color: @text-color-secondary;
+
+        &:hover {
+          display: block;
+          padding: 5px;
+          color: @text-color;
+        }
+
+        &::before {
+          text-align: center;
+          margin-right: 10px;
+          padding: 0 5px;
+          line-height: 1;
+          -webkit-border-radius: 3px;
+          border-radius: 3px;
+          color: #999;
+          background: #eee;
+        }
+
+        &.top1::before {
+          color: #fff;
+          background: red;
+          content: '1';
+        }
+
+        &.top2::before {
+          color: #fff;
+          background: #f60;
+          content: '2';
+        }
+
+        &.top3::before {
+          color: #fff;
+          background: orange;
+          content: '3';
+        }
+
+        &.top4::before {
+          content: '4';
+        }
+
+        &.top5::before {
+          content: '5';
+        }
+
+        & > div {
+          width: calc(100% - 30px);
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .articleTitle {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          .views {
+            color: #ccc;
+            margin-left: 10px;
+
+            & > span {
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
