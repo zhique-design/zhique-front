@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Menu, MenuProps } from "antd";
 import { Link } from "dva/router";
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
 import GlobalStore from "@/layouts/GlobalLayout/stores/GlobalStore";
 
 interface BaseMenuProps extends MenuProps {
@@ -16,6 +16,7 @@ const conversionPath = (path) => {
 };
 
 @inject(...["globalStore"])
+@observer
 export default class BaseMenu extends Component<BaseMenuProps> {
   /**
    * 获得菜单的子节点
@@ -76,7 +77,6 @@ export default class BaseMenu extends Component<BaseMenuProps> {
     if (!globalStore) return null;
 
     const { menuData, menuTheme, menuMode, selectedMenuKeys } = globalStore;
-
     let props = {};
     if (openKeys) {
       props = { openKeys };

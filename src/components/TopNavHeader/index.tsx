@@ -35,7 +35,7 @@ export default class TopNavHeader extends Component<TopNavHeaderProps> {
                 <h1>断线的风筝</h1>
               </Link>
             </div>
-            <div style={{ maxWidth: 1200 }}>
+            <div className={styles.menu}>
               <BaseMenu
                 {...this.props}
                 style={{ border: "none", height: 64 }}
