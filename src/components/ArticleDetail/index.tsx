@@ -2,9 +2,8 @@ import React from "react";
 import { Breadcrumb, Tag } from "antd";
 import moment from "moment";
 import { Link } from "dva/router";
-import "github-markdown-css/github-markdown.css";
+import Editor from "wrap-md-editor";
 import styles from "./index.module.less";
-import Markdown from "../Markdown";
 
 interface ArticleContentProps {
   articleDetail: any;
@@ -54,7 +53,11 @@ const ArticleContent: React.FC<ArticleContentProps> = ({
         </div>
       </div>
     </div>
-    <Markdown value={body} />
+    <Editor.EditorShow
+      config={{
+        markdown: body,
+      }}
+    />
     <div className={styles.articleFooter}>
       <div>
         文章标签：

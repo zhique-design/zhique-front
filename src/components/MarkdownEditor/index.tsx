@@ -1,7 +1,14 @@
 import React, { PureComponent } from "react";
+import Editor from "wrap-md-editor";
 
 export default class MarkdownEditor extends PureComponent<any> {
   render() {
-    return <div>markdown编辑器</div>;
+    return (
+      <Editor
+        config={{
+          markdown: `# test`,
+        }}
+      />
+    );
   }
 }
