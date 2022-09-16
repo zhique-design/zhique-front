@@ -48,7 +48,6 @@ const GlobalModel: GlobalModelType = {
     setup({ history }) {
       const token = extractAccessTokenFromHash(window.location.hash);
       if (token) {
-        debugger;
         setAccessToken(token);
         const {
           location: { pathname, search },
