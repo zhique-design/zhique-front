@@ -159,6 +159,9 @@ module.exports = {
         API_HOST: JSON.stringify(
           process.env.API_HOST || "http://127.0.0.1:8080"
         ),
+        LOGIN_URL: JSON.stringify(
+          process.env.LOGIN_URL || "http://127.0.0.1:8080/oauth/login"
+        ),
       },
     }),
   ],

@@ -5,13 +5,16 @@ export const ACCESS_TOKEN = "access_token";
 const cookies = new Cookies();
 
 export function getAccessToken() {
-  const privateRouter = window.location.pathname.startsWith("/console");
-  const privateToken = parse(window.location.search) || {};
-  return privateRouter
-    ? privateToken.access_token
-    : cookies.get(ACCESS_TOKEN, {
-        path: "/",
-      } as CookieGetOptions);
+  // const privateRouter = window.location.pathname.startsWith("/console");
+  // const privateToken = parse(window.location.search) || {};
+  // return privateRouter
+  //   ? privateToken.access_token
+  //   : cookies.get(ACCESS_TOKEN, {
+  //       path: "/",
+  //     } as CookieGetOptions);
+  return cookies.get(ACCESS_TOKEN, {
+    path: "/",
+  } as CookieGetOptions);
 }
 
 export function setAccessToken(token) {

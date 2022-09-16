@@ -12,6 +12,17 @@ const config: Array<RouterConfig> = [
     component: () => import("@/layouts/GlobalLayout"),
     children: [
       {
+        path: "/console",
+        component: () => import("@/layouts/ConsoleLayout"),
+        models: ["account"],
+        children: [
+          {
+            path: "/console/category",
+            component: () => import("@/pages/Console/Category"),
+          },
+        ],
+      },
+      {
         path: "/",
         component: () => import("@/layouts/BlogLayout"),
         models: ["blog/article"],

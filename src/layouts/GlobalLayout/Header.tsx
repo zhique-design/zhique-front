@@ -18,7 +18,7 @@ export default class HeaderView extends Component<HeaderViewProps> {
   render() {
     const { globalStore } = this.props;
     if (!globalStore) return null;
-    const { isMobile } = globalStore;
+    const { isMobile, isConsole } = globalStore;
     return (
       <Header style={{ padding: 0 }}>
         {!isMobile ? <TopNavHeader {...this.props} /> : <GlobalHeader />}

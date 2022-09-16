@@ -53,6 +53,7 @@ instance.interceptors.response.use(
     if (response) {
       const { status } = response;
       if (status === 401) {
+        debugger;
         removeAccessToken();
         const redirectUri = window.location.href;
         window.location.href = `${LOGIN_URL}?${stringify({ redirectUri })}`;

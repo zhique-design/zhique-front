@@ -6,7 +6,6 @@ import { inject, observer } from "mobx-react";
 import GlobalStore from "@/layouts/GlobalLayout/stores/GlobalStore";
 import styles from "./index.module.less";
 import BaseMenu from "../SiderMenu/BaseMenu";
-import RightContent from "../GlobalHeader/RightContent";
 
 interface TopNavHeaderProps extends ComponentProps<any> {
   globalStore?: GlobalStore;
@@ -42,7 +41,6 @@ export default class TopNavHeader extends Component<TopNavHeaderProps> {
               />
             </div>
           </div>
-          <RightContent theme={menuTheme} />
         </div>
       </div>
     );
