@@ -17,8 +17,8 @@ const config: Array<RouterConfig> = [
         models: ["account"],
         children: [
           {
-            path: "/console/category",
-            component: () => import("@/pages/Console/Category"),
+            path: "/console/article/add",
+            component: () => import("@/pages/Console/ArticleAdd"),
           },
         ],
       },

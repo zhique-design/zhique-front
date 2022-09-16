@@ -32,15 +32,10 @@ export default class GlobalStore {
   @computed
   get menuData() {
     const { menuData } = this.props;
-    if (this.isConsole)
-      return [
-        { path: "/", name: "首页" },
-        { path: "/console/category", name: "分类管理" },
-      ];
     return [
       { path: "/", name: "首页" },
       ...menuData,
-      { path: "/console", name: "博客管理" },
+      { path: "/console/article/add", name: "写文章" },
     ];
   }
 
